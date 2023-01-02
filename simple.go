@@ -29,7 +29,7 @@ func (p *program) run() {
 	// C:\Users\Jiean\Desktop\work\supervisord-research\supervisord.exe --configuration=\"C:\Users\Jiean\Desktop\work\supervisord-research\supervisord-windows.conf\"
 
 	fmt.Println("http.exe test")
-	cmd := exec.Command("http.exe")
+	cmd := exec.Command("C:\\Users\\Jiean\\Desktop\\work\\GolangWindowsService\\http.exe")
 	err := cmd.Run()
 	if err != nil {
 		log.Fatalf("cmd.Run() failed with %s\n", err)
