@@ -5,7 +5,7 @@
 
   "Dir": "C:\\Users\\Jiean\\Desktop\\work\\GolangWindowsService",
   "Exec": "C:\\windows\\system32\\cmd.exe",
-  "Args": ["/C", "http"],
+  "Args": [],
   "Env": [],
   "Stderr": "C:\\builder_yang_http_err.log",
   "Stdout": "C:\\builder_yang_http_out.log"
