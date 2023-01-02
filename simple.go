@@ -24,6 +24,10 @@ func (p *program) Start(s service.Service) error {
 }
 func (p *program) run() {
 	// Do work here
+	// Run command: 
+	// C:\Users\Jiean\Desktop\work\supervisord-research\supervisord.exe --configuration=\"C:\Users\Jiean\Desktop\work\supervisord-research\supervisord-windows.conf\"
+
+
 	fmt.Println("simple test")
 	http.HandleFunc("/", rootHandler)
 
