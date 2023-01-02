@@ -12,7 +12,6 @@ import (
 	"log"
 	"os"
 	"os/exec"
-	"path/filepath"
 
 	"github.com/kardianos/service"
 )
@@ -103,20 +102,20 @@ func (p *program) Stop(s service.Service) error {
 	return nil
 }
 
-func getConfigPath() (string, error) {
-	fullexecpath, err := os.Executable()
-	if err != nil {
-		return "", err
-	}
+// func getConfigPath() (string, error) {
+// 	fullexecpath, err := os.Executable()
+// 	if err != nil {
+// 		return "", err
+// 	}
 
-	dir, execname := filepath.Split(fullexecpath)
-	fmt.Println("dir",dir)
-	fmt.Println("execname",execname)
-	ext := filepath.Ext(execname)
-	name := execname[:len(execname)-len(ext)]
+// 	dir, execname := filepath.Split(fullexecpath)
+// 	fmt.Println("dir",dir)
+// 	fmt.Println("execname",execname)
+// 	ext := filepath.Ext(execname)
+// 	name := execname[:len(execname)-len(ext)]
 
-	return filepath.Join(dir, name+".json"), nil
-}
+// 	return filepath.Join(dir, name+".json"), nil
+// }
 
 func getConfig(path string) (*Config, error) {
 	f, err := os.Open(path)
@@ -139,11 +138,11 @@ func main() {
 	svcFlag := flag.String("service", "", "Control the system service.")
 	flag.Parse()
 
-	configPath, err := getConfigPath()
-	if err != nil {
-		log.Fatal(err)
-	}
-	config, err := getConfig(configPath)
+	// configPath, err := getConfigPath()
+	// if err != nil {
+	// 	log.Fatal(err)
+	// }
+	config, err := getConfig("./runner.json")
 	if err != nil {
 		log.Fatal(err)
 	}
