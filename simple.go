@@ -49,7 +49,8 @@ func main() {
 		Name:        "GoServiceTest",
 		DisplayName: "Go Service Test",
 		Description: "This is a test Go service.",
-		Executable: "simple.exe service start",
+		Executable: "simple.exe",
+		Arguments: []string{"service", "start"},
 	}
 
 	prg := &program{}
