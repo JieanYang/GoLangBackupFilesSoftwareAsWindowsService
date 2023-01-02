@@ -73,6 +73,22 @@ func main() {
 		} else {
 			fmt.Println("Succeed to uninstall service")
 		}
+	case "start": 
+		err := s.Start()
+		if err != nil {
+			logger.Error("Failed to start service: ", err)
+			fmt.Println("Failed to start service: ", err)
+		} else {
+			fmt.Println("Succeed to start service go-supervisord")
+		}
+	case "stop":
+		err := s.Stop()
+		if err != nil {
+			logger.Error("Failed to stop service: ", err)
+			fmt.Println("Failed to stop service: ", err)
+		} else {
+			fmt.Println("Succeed to stop service go-supervisord")
+		}
 	default:
 		logger, err = s.Logger(nil)
 		if err != nil {
