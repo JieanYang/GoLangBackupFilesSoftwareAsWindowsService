@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"log"
 	"net/http"
+	"os"
 
 	"github.com/kardianos/service"
 )
@@ -37,6 +38,13 @@ func (p *program) Stop(s service.Service) error {
 }
 
 func main() {
+	fmt.Println("os.Args: ",os.Args)
+	fmt.Println("os.Args[0]: ",os.Args[0])
+	fmt.Println("os.Args[1]: ",os.Args[1])
+	fmt.Println("os.Args[2]: ",os.Args[2])
+
+	actionFlag := os.Args[2]
+
 	svcConfig := &service.Config{
 		Name:        "GoServiceTest",
 		DisplayName: "Go Service Test",
@@ -48,12 +56,31 @@ func main() {
 	if err != nil {
 		log.Fatal(err)
 	}
-	logger, err = s.Logger(nil)
-	if err != nil {
-		log.Fatal(err)
-	}
-	err = s.Run()
-	if err != nil {
-		logger.Error(err)
+
+	switch actionFlag {
+	case "install":
+		err := s.Install()
+		if err != nil {
+			logger.Error("Fail to install service", err)
+		} else {
+			fmt.Println("Succeed to install service")
+		}
+	case "uninstall":
+		s.Stop()
+		err := s.Uninstall()
+		if err != nil {
+			logger.Error("Fail to uninstall service", err)
+		} else {
+			fmt.Println("Succeed to uninstall service")
+		}
+	default:
+		logger, err = s.Logger(nil)
+		if err != nil {
+			log.Fatal(err)
+		}
+		err = s.Run()
+		if err != nil {
+			logger.Error(err)
+		}
 	}
 }

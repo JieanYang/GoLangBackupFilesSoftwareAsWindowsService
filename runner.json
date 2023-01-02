@@ -4,7 +4,7 @@
   "Description": "Run Go yang service",
 
   "Dir": "C:\\Users\\Jiean\\Desktop\\work\\GolangWindowsService",
-  "Exec": "C:\\windows\\system32\\cmd.exe",
+  "Exec": "C:\\Users\\Jiean\\Desktop\\work\\GolangWindowsService\\http\\http.exe",
   "Args": [],
   "Env": [],
   "Stderr": "C:\\builder_yang_http_err.log",
