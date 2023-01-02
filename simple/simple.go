@@ -3,6 +3,7 @@ package main
 import (
 	"fmt"
 	"log"
+	"net/http"
 
 	"github.com/kardianos/service"
 )
@@ -10,6 +11,10 @@ import (
 var logger service.Logger
 
 type program struct{}
+
+func rootHandler(w http.ResponseWriter, r *http.Request) {
+	fmt.Fprintf(w, "<h1>Go - Hello World</h1>")
+}
 
 func (p *program) Start(s service.Service) error {
 	// Start should not block. Do the actual work async.
@@ -19,6 +24,12 @@ func (p *program) Start(s service.Service) error {
 func (p *program) run() {
 	// Do work here
 	fmt.Println("simple test")
+	http.HandleFunc("/", rootHandler)
+
+	err := http.ListenAndServe(":9001", nil)
+	if err != nil {
+		panic(err)
+	}
 }
 func (p *program) Stop(s service.Service) error {
 	// Stop should not block. Return with a few seconds.
