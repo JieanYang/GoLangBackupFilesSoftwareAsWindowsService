@@ -38,8 +38,10 @@ func (p *program) Stop(s service.Service) error {
 }
 
 func main() {
-
-	actionCommendArg := os.Args[2]
+	actionCommendArg := "start" 
+	if len(os.Args)>=2 {
+		actionCommendArg = os.Args[1]
+	} 
 
 	svcConfig := &service.Config{
 		Name:        "GoServiceTest",
