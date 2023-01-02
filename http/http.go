@@ -26,6 +26,6 @@ func startHttp() {
 	wg.Wait()
 }
 
-// func main () {
-// 	startHttp()
-// }
+func main () {
+	startHttp()
+}
