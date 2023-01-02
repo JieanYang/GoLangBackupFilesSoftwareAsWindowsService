@@ -80,14 +80,19 @@ func main() {
 			fmt.Println("Succeed to uninstall service")
 		}
 	case "start": 
-		err := s.Start()
+		err = s.Run()
 		if err != nil {
-			logger.Error("Failed to start service: ", err)
-			fmt.Println("Failed to start service: ", err)
-		} else {
-			fmt.Println("Succeed to start service go-supervisord")
+			logger.Error(err)
 		}
+		// err := s.Start()
+		// if err != nil {
+		// 	logger.Error("Failed to start service: ", err)
+		// 	fmt.Println("Failed to start service: ", err)
+		// } else {
+		// 	fmt.Println("Succeed to start service go-supervisord")
+		// }
 	case "stop":
+		// fmt.Println("Run stop function")
 		err := s.Stop()
 		if err != nil {
 			logger.Error("Failed to stop service: ", err)
