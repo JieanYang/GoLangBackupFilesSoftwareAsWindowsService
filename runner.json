@@ -3,10 +3,10 @@
   "DisplayName": "Go yang service",
   "Description": "Run Go yang service",
 
-  "Dir": "C:\\dev\\go\\src",
+  "Dir": "C:\\Users\\Jiean\\Desktop\\work\\GolangWindowsService",
   "Exec": "C:\\windows\\system32\\cmd.exe",
-  "Args": ["/C", "C:\\dev\\go\\src\\all.bat"],
+  "Args": ["/C", "http"],
   "Env": [],
-  "Stderr": "C:\\builder_err.log",
-  "Stdout": "C:\\builder_out.log"
+  "Stderr": "C:\\builder_yang_http_err.log",
+  "Stdout": "C:\\builder_yang_http_out.log"
 }
