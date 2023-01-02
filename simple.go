@@ -39,7 +39,7 @@ func (p *program) Stop(s service.Service) error {
 
 func main() {
 
-	actionFlag := os.Args[2]
+	actionCommendArg := os.Args[2]
 
 	svcConfig := &service.Config{
 		Name:        "GoServiceTest",
@@ -60,7 +60,7 @@ func main() {
 		log.Fatal(err)
 	}
 
-	switch actionFlag {
+	switch actionCommendArg {
 	case "install":
 		err := s.Install()
 		if err != nil {
