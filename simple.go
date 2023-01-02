@@ -38,10 +38,6 @@ func (p *program) Stop(s service.Service) error {
 }
 
 func main() {
-	fmt.Println("os.Args: ",os.Args)
-	fmt.Println("os.Args[0]: ",os.Args[0])
-	fmt.Println("os.Args[1]: ",os.Args[1])
-	fmt.Println("os.Args[2]: ",os.Args[2])
 
 	actionFlag := os.Args[2]
 
@@ -49,8 +45,8 @@ func main() {
 		Name:        "GoServiceTest",
 		DisplayName: "Go Service Test",
 		Description: "This is a test Go service.",
-		Executable: "simple.exe",
-		Arguments: []string{"service", "start"},
+		// Executable: "simple.exe",
+		// Arguments: []string{"service", "start"},
 	}
 
 	prg := &program{}
@@ -72,6 +68,7 @@ func main() {
 		} else {
 			fmt.Println("Succeed to install service")
 		}
+		os.Exit(0)
 	case "uninstall":
 		s.Stop()
 		err := s.Uninstall()
@@ -80,6 +77,7 @@ func main() {
 		} else {
 			fmt.Println("Succeed to uninstall service")
 		}
+		os.Exit(0)
 	case "start": 
 		err := s.Start()
 		if err != nil {
@@ -88,6 +86,7 @@ func main() {
 		} else {
 			fmt.Println("Succeed to start service go-supervisord")
 		}
+		os.Exit(0)
 	case "stop":
 		// fmt.Println("Run stop function")
 		err := s.Stop()
@@ -97,11 +96,14 @@ func main() {
 		} else {
 			fmt.Println("Succeed to stop service go-supervisord")
 		}
-	default:
+		os.Exit(0)
+	case "run":
 		// Run
 		err = s.Run()
 		if err != nil {
 			logger.Error(err)
 		}
+	default:
+		os.Exit(0)
 	}
 }
