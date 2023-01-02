@@ -1,12 +1,9 @@
-// Copyright 2015 Daniel Theophanes.
-// Use of this source code is governed by a zlib-style
-// license that can be found in the LICENSE file.
-
-// simple does nothing except block while running the service.
 package main
 
 import (
+	"fmt"
 	"log"
+	"time"
 
 	"github.com/kardianos/service"
 )
@@ -21,7 +18,7 @@ func (p *program) Start(s service.Service) error {
 	return nil
 }
 func (p *program) run() {
-	// Do work here
+	fmt.Println(time.Now().Format("2006-01-02 03:04:05 PM"), "Service started")
 	startHttp()
 }
 func (p *program) Stop(s service.Service) error {
@@ -31,9 +28,9 @@ func (p *program) Stop(s service.Service) error {
 
 func main() {
 	svcConfig := &service.Config{
-		Name:        "GoServiceExampleSimple",
-		DisplayName: "Go Service Example",
-		Description: "This is an example Go service.",
+		Name:        "ims",
+		DisplayName: "IMS",
+		Description: "IMS",
 	}
 
 	prg := &program{}
