@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"log"
 	"net/http"
+	"os/exec"
 
 	"github.com/kardianos/service"
 )
@@ -23,18 +24,25 @@ func (p *program) Start(s service.Service) error {
 }
 func (p *program) run() {
 	// Do work here
-	
+
 	// Run command: 
 	// C:\Users\Jiean\Desktop\work\supervisord-research\supervisord.exe --configuration=\"C:\Users\Jiean\Desktop\work\supervisord-research\supervisord-windows.conf\"
 
-
-	fmt.Println("simple test")
-	http.HandleFunc("/", rootHandler)
-
-	err := http.ListenAndServe(":9001", nil)
+	fmt.Println("http.exe test")
+	cmd := exec.Command("http.exe")
+	err := cmd.Run()
 	if err != nil {
+		log.Fatalf("cmd.Run() failed with %s\n", err)
 		panic(err)
 	}
+
+	// * fmt.Println("simple test")
+	// http.HandleFunc("/", rootHandler)
+
+	// err := http.ListenAndServe(":9001", nil)
+	// if err != nil {
+	// 	panic(err)
+	// }
 }
 func (p *program) Stop(s service.Service) error {
 	// Stop should not block. Return with a few seconds.
