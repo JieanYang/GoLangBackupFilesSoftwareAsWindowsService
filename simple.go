@@ -102,6 +102,7 @@ func main() {
 			fmt.Println("Succeed to stop service go-supervisord")
 		}
 	default:
+		// Run
 		err = s.Run()
 		if err != nil {
 			logger.Error(err)
