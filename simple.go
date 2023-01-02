@@ -49,10 +49,16 @@ func main() {
 		Name:        "GoServiceTest",
 		DisplayName: "Go Service Test",
 		Description: "This is a test Go service.",
+		Executable: "simple.exe service start",
 	}
 
 	prg := &program{}
 	s, err := service.New(prg, svcConfig)
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	logger, err = s.Logger(nil)
 	if err != nil {
 		log.Fatal(err)
 	}
@@ -90,10 +96,6 @@ func main() {
 			fmt.Println("Succeed to stop service go-supervisord")
 		}
 	default:
-		logger, err = s.Logger(nil)
-		if err != nil {
-			log.Fatal(err)
-		}
 		err = s.Run()
 		if err != nil {
 			logger.Error(err)

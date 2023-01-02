@@ -1,4 +1,4 @@
-module runner
+module simple
 
 go 1.19
 
