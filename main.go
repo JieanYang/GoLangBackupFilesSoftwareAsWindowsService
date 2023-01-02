@@ -6,10 +6,7 @@
 package main
 
 import (
-	"fmt"
 	"log"
-	"net/http"
-	"sync"
 
 	"github.com/kardianos/service"
 )
@@ -17,26 +14,6 @@ import (
 var logger service.Logger
 
 type program struct{}
-
-func rootHandler(w http.ResponseWriter, r *http.Request) {
-	fmt.Fprintf(w, "<h1>Go - Hello World</h1>")
-}
-func startHttp() {
-	wg := new(sync.WaitGroup)
-
-	wg.Add(1)
-	go func() {
-		http.HandleFunc("/", rootHandler)
-
-		err := http.ListenAndServe(":9001", nil)
-		if err != nil {
-			panic(err)
-		}
-		wg.Done()
-	}()
-
-	wg.Wait()
-}
 
 func (p *program) Start(s service.Service) error {
 	// Start should not block. Do the actual work async.
